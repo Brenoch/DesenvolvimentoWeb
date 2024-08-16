@@ -1,0 +1,9 @@
+h1 {
+    color: rgb(238, 2, 2);
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgb(255, 255, 255);
+}
+
+button{
+    color: red;
+}
