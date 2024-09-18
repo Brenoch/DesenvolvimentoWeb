@@ -21,10 +21,13 @@ body {
 
   a:link, a:visited {
     color: #fb6542;
+    text-decoration: none;
+
+
   }
 
   a:hover {
-    text-decoration: none;
+    color: green;
   }
 
   ul {
@@ -33,3 +36,4 @@ body {
     padding: 30px;
     border: 7px solid purple
   }
+
