@@ -1,20 +1,39 @@
+const url = "https://botafogo-atletas.mange.li/2024-1/";
+
+const pega_json = async (caminho) => {
+    const resposta = await fetch(caminho);
+    const dados = await resposta.json();
+    return dados;
+}
+
 const container = document.getElementById("container");
 
-let atleta;
+const montaCard = (atleta) => {
+    const cartao = document.createElement("article");
+    const nome = document.createElement("h1");
+    const imagem = document.createElement("img");
+    const descri = document.createElement("p");
+    const link  = document.createElement("a");
 
-let conteudo = ' ';
+    nome.innerHTML = atleta.nome;
+    nome.style.fontFamily = 'sans-serif';  // Corrigido de 'none' para 'nome'
+    cartao.appendChild(nome);
 
-const montaCard = (atleta) => `
-    <article>
-        <h1>${atleta.nome}</h1>
-        <img src='${atleta.imagem}'>
-        <p>${atleta.detalhes}</p>
-    </article>
-`;
+    imagem.src = atleta.imagem;
+    cartao.appendChild(imagem);
 
-dados.forEach(
-    (ele) => conteudo += montaCard(ele)
-)
+    descri.innerHTML = atleta.detalhes;
+    cartao.appendChild(descri);  // Corrigido de 'appendnChild' para 'appendChild'
 
-container.innerHTML = conteudo;
 
+    link.innerText = 'Saiba Mais...';
+    link.href = `detalhes.html?id=${atleta.id}`;
+    cartao.appendChild(link);
+    return cartao;
+};
+
+pega_json(`${url}feminino`).then((r) => {
+    r.forEach((ele) => container.appendChild(montaCard(ele)));
+});
+
+console.log("isso imprime primeiro");
