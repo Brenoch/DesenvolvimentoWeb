@@ -1,5 +1,5 @@
 
-/* 
+/*
 Elenco x
 
 imagem x
@@ -43,7 +43,7 @@ const achaCookie = (chave) => {
 const montaPagina = (dados) => {
     const body = document.body;
     body.innerHTML = '';
-    
+
     const nome = document.createElement('h1');
     nome.innerHTML = dados.nome;
     body.appendChild(nome);
@@ -69,8 +69,11 @@ const montaPagina = (dados) => {
     posicao.innerText = dados.posicao;
     body.appendChild(posicao);
 }
-
+if(sessionStorage.getItem('logado')){
 pega_json(`https://botafogo-atletas.mange.li/2024-1/${id}`).then(
     (r) => montaPagina(r)
 );
 
+}else{
+    document.body.innerHTML = "<h1>voce precisa estar logado</h1>";
+}

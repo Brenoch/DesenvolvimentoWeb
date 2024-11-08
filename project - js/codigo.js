@@ -19,7 +19,7 @@ const manipulaCLick = (e) => {
     sessionStorage.setItem('id', id);
     sessionStorage.setItem('dados', JSON.stringify(e.currentTarget.dataset));
 
-    window.location.href = url; 
+    window.location.href = url;
 
     console.log(e.currentTarget);
 }
@@ -37,14 +37,14 @@ const montaCard = (atleta) => {
     const imagem = document.createElement("img");
     const descricao = document.createElement("p");
     // const link = document.createElement("a");
-    
+
     nome.innerText = atleta.nome;
     nome.style.fontFamily= 'sains-serif';
     cartao.appendChild(nome);
-    
+
     imagem.src = atleta.imagem;
     cartao.appendChild(imagem);
-    
+
     descricao.innerHTML = atleta.detalhes;
     cartao.appendChild(descricao);
 
@@ -54,9 +54,9 @@ const montaCard = (atleta) => {
 
     cartao.dataset.id = atleta.id;
     cartao.dataset.nJogos = atleta.n_jogos;
-    
+
     cartao.onclick = manipulaCLick;
-    
+
     return cartao;
 }
 
@@ -64,10 +64,26 @@ pega_json(`${url}feminino`).then(
     (r) => {
         r.forEach(
             (ele) => container.appendChild(montaCard(ele))
-        )       
-    } 
+        )
+    }
 );
 
 // pega_json(`${url}26`).then(
 //     (r) => console.log(r)
 // )
+
+
+const manipulaBotao = () => {
+    const texto = document.getElementById("senha").value;
+    if (hex_md5(texto) == "5029cc9dd0295ded2f500084635c18c1"){
+        sessionStorage.setItem('logado', 'sim');
+    }
+    else{
+        alert('Você errou a senha!!!');
+    }
+}
+
+document.getElementById('botao').onclick = manipulaBotao
+
+document.getElementById('logout').onclick = () => sessionStorage.removeItem('logado')
+
