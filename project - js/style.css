@@ -1,12 +1,12 @@
-#container{
+#container {
     display: flex;
     flex-wrap: wrap;
 }
 
-#container > article{
+#container > article {
     width: 20rem;
-    border: solid royalblue 1px;
-    border-radius: 5px;
+    border: solid rebeccapurple 1px;
+    border-radius: 10px;
     margin: .5rem;
     padding: .3rem;
 }
